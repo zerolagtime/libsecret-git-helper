@@ -1,0 +1,4 @@
+git-credential-libsecret
+*.swp
+Makefile
+git-credential-libsecret.c
