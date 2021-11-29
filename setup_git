@@ -1,0 +1,14 @@
+#!/bin/bash
+here=$(basename $0)
+if [ "$here" == "." ]; then
+  here=$(pwd)
+fi
+find /usr/lib -name "libsecret*" | wc -l | grep --silent -v '^0$'
+if [ $? -ne 0 ]; then
+  echo "libsecret does not appear to be installed. Exiting."
+  exit 1
+fi
+if [ ! -x git-credential-libsecret ]; then
+  $here/build.sh || exit 1
+fi
+git config --global credential.helper $here/git-credential-libsecret
