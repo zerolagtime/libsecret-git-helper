@@ -1,5 +1,5 @@
 #!/bin/bash
-here=$(basename $0)
+here=$(dirname $0)
 if [ "$here" == "." ]; then
   here=$(pwd)
 fi
@@ -11,4 +11,5 @@ fi
 if [ ! -x git-credential-libsecret ]; then
   $here/build.sh || exit 1
 fi
+set -x
 git config --global credential.helper $here/git-credential-libsecret
